@@ -165,14 +165,6 @@ GO
 ALTER TABLE [dbo].[Bank_Info] CHECK CONSTRAINT [FK__Bank_Info__Compa__08EA5793]
 GO
 
-
-
-
-
-/****** Object:  Table [dbo].[Supplier]    Script Date: 02-01-2019 16:27:30 ******/
-DROP TABLE [dbo].[Supplier]
-GO
-
 /****** Object:  Table [dbo].[Supplier]    Script Date: 02-01-2019 16:27:30 ******/
 SET ANSI_NULLS ON
 GO
