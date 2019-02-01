@@ -1,4 +1,174 @@
 /*Sql Query Schemas*/
+USE TestStock
+GO
+/****** Object:  Table [dbo].[Bank_Info]    Script Date: 02-01-2019 16:32:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Bank_Info](
+	[Company_Bank_Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Company_Id] [bigint] NULL,
+	[Is_Company] [bit] NULL,
+	[Is_Customer] [bit] NULL,
+	[Is_Supplier] [bit] NULL,
+	[Is_Employee] [bit] NULL,
+	[Customer_Id] [bigint] NULL,
+	[Suppplier_Id] [bigint] NULL,
+	[Employee_Id] [bigint] NULL,
+	[Bank_Name] [varchar](500) NULL,
+	[Acc_Type] [varchar](500) NULL,
+	[Acc_No] [varchar](500) NULL,
+	[Branch_Name] [varchar](500) NULL,
+	[IFSC_Code] [varbinary](50) NULL,
+	[Is_Actv] [bit] NULL,
+	[Is_Del] [bit] NULL,
+	[Crtd_by] [bigint] NULL,
+	[Crtd_ts] [datetime] NULL,
+	[Mod_by] [bigint] NULL,
+	[Mod_ts] [datetime] NULL,
+ CONSTRAINT [PK_Bank_Info] PRIMARY KEY CLUSTERED 
+(
+	[Company_Bank_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[City]    Script Date: 02-01-2019 16:32:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[City](
+	[City_id] [bigint] IDENTITY(1,1) NOT NULL,
+	[City_Code] [varchar](50) NULL,
+	[City_Name] [varchar](500) NULL,
+	[Is_Actv] [bit] NULL,
+	[Is_Del] [bit] NULL,
+	[Crtd_by] [bigint] NULL,
+	[Crtd_ts] [datetime] NULL,
+	[Mod_by] [bigint] NULL,
+	[Mod_ts] [datetime] NULL,
+ CONSTRAINT [PK_City] PRIMARY KEY CLUSTERED 
+(
+	[City_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Company]    Script Date: 02-01-2019 16:32:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Company](
+	[Company_Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[User_id] [bigint] NULL,
+	[Company_Name] [varchar](500) NULL,
+	[Email] [varchar](500) NULL,
+	[Phone1] [varchar](50) NULL,
+	[Phone2] [varchar](50) NULL,
+	[GSTIN_UIN] [varchar](500) NULL,
+	[CIN] [varchar](500) NULL,
+	[Contact_Person] [varchar](500) NULL,
+	[Address1] [varchar](max) NULL,
+	[Address2] [varchar](max) NULL,
+	[City_id] [bigint] NULL,
+	[State_id] [bigint] NULL,
+	[Country_id] [bigint] NULL,
+	[Pincode] [varchar](500) NULL,
+	[Fax_no] [varchar](500) NULL,
+	[PAN] [varchar](50) NULL,
+	[Service_Tax_No] [varchar](50) NULL,
+	[State_code] [varchar](50) NULL,
+	[Website] [varchar](500) NULL,
+	[Is_Actv] [bit] NULL,
+	[Is_Del] [bit] NULL,
+	[Crtd_by] [bigint] NULL,
+	[Crtd_ts] [datetime] NULL,
+	[Mod_by] [bigint] NULL,
+	[Mod_ts] [datetime] NULL,
+ CONSTRAINT [PK_Company] PRIMARY KEY CLUSTERED 
+(
+	[Company_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Country]    Script Date: 02-01-2019 16:32:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Country](
+	[Country_Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Country_Code] [varchar](50) NULL,
+	[Country_Name] [varchar](500) NULL,
+	[Is_Actv] [bit] NULL,
+	[Is_Del] [bit] NULL,
+	[Crtd_by] [bigint] NULL,
+	[Crtd_ts] [datetime] NULL,
+	[Mod_by] [bigint] NULL,
+	[Mod_ts] [datetime] NULL,
+ CONSTRAINT [PK_Country] PRIMARY KEY CLUSTERED 
+(
+	[Country_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[State]    Script Date: 02-01-2019 16:32:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[State](
+	[State_Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[State_Code] [varchar](50) NULL,
+	[State_Name] [varchar](500) NULL,
+	[Is_Actv] [bit] NULL,
+	[Is_Del] [bit] NULL,
+	[Crtd_by] [bigint] NULL,
+	[Crtd_ts] [datetime] NULL,
+	[Mod_by] [bigint] NULL,
+	[Mod_ts] [datetime] NULL,
+ CONSTRAINT [PK_State] PRIMARY KEY CLUSTERED 
+(
+	[State_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+ALTER TABLE [dbo].[Bank_Info]  WITH CHECK ADD  CONSTRAINT [FK__Bank_Info__Compa__08EA5793] FOREIGN KEY([Company_Id])
+REFERENCES [dbo].[Company] ([Company_Id])
+GO
+ALTER TABLE [dbo].[Bank_Info] CHECK CONSTRAINT [FK__Bank_Info__Compa__08EA5793]
+GO
+
+
+
+
+
 /****** Object:  Table [dbo].[Supplier]    Script Date: 02-01-2019 16:27:30 ******/
 DROP TABLE [dbo].[Supplier]
 GO
