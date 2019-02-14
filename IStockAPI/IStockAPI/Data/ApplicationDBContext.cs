@@ -26,6 +26,8 @@ namespace IStockAPI.Data
 
             #endregion
         }
+        
+         public DbSet<Item> Items { get; set; }
     }
 }
 
