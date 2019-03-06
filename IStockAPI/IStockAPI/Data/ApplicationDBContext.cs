@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using IStockAPI.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -26,8 +27,15 @@ namespace IStockAPI.Data
 
             #endregion
         }
-        
-         public DbSet<Item> Items { get; set; }
+
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Buyer> Buyers { get; set; }
+
     }
 }
 
