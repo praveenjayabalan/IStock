@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace IStockAPI.ViewModels
 {
-    public class Item
+    public class Item: CommonEntity
     {
         [Key]
-        public Int32 Id { get; set; }
+        public Int64 Item_Id { get; set; }
 
-        [Required(ErrorMessage = "Please Enter ItemCode")]
-        [EmailAddress]
+        [Required(ErrorMessage = "Please Enter Item Code")]        
         [StringLength(10)]
         public string ItemCode { get; set; }
 
-        [Required(ErrorMessage = "Please Enter ItemName")]
+        [Required(ErrorMessage = "Please Enter Item Name")]
         [StringLength(100)]
         public string ItemName { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+   
+
     }
 
 }
