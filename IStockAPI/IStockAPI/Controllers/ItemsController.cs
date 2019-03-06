@@ -27,18 +27,37 @@ namespace IStockAPI.Controllers
         [Route("GetItems")]
         public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
-            return await _context.Items.ToListAsync();
+            Task<List<Item>> Res;
+            try
+            {
+                Res = _context.Items.Where(o => o.Is_Actv == true).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return await Res;// _context.Items.ToListAsync();
         }
 
         // GET api/Items/5
         [HttpGet]
-        [Route("GetItem")]
+        [Route("GetItem/{id}")]
         public async Task<ActionResult<Item>> GetItem(long id)
         {
-            var Item = await _context.Items.FindAsync(id);
-            if (Item == null)
+            Item Item;
+            try
             {
-                return NotFound();
+                Item = await _context.Items.FindAsync(id);
+                if (Item == null)
+                {
+                    return NotFound();
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
             return Item;
@@ -52,44 +71,63 @@ namespace IStockAPI.Controllers
         {
             _context.Items.Add(item);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetItem), new { id = item.Id }, item);
+            return CreatedAtAction(nameof(GetItem), new { id = item.Item_Id }, item);
         }
 
-
+        
         // PUT api/Items/5
-        [Route("UpdateItem")]
-        [HttpPost]
-        public async Task<IActionResult> PutItem(long id, Item item)
+        [Route("UpdateItem/{id}")]
+        [HttpPut]
+        public async Task<ActionResult<Item>> PutItem(long id, Item item)
         {
-            if (id != item.Id)
+            try
             {
-                return BadRequest();
+
+                if (id != item.Item_Id)
+                {
+                    return BadRequest();
+                }
+
+                _context.Entry(item).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
             }
+            catch (Exception)
+            {
 
-            _context.Entry(item).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+                throw;
+            }
+            //return NoContent();
+            return item;
         }
 
 
 
         // DELETE api/Items/5        
-        [Route("DeleteItem")]
+        [Route("DeleteItem/{id}")]
         [HttpPost]
-        public async Task<IActionResult> DeleteItem(long id,Item item)
+        public async Task<ActionResult<Item>> DeleteItem(long id)
         {
-            var todoItem = await _context.Items.FindAsync(id);
-
-            if (todoItem == null)
+            Item item;
+            try
             {
-                return NotFound();
+                item = await _context.Items.FindAsync(id);
+                if (item == null)
+                {
+                    return NotFound();
+                }
+
+                item.Is_Actv = false;
+                item.Is_Del = true;
+
+                _context.Entry(item).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
             }
+            catch (Exception)
+            {
 
-            _context.Entry(item).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+                throw;
+            }
+            return item;
         }
     }
 }
